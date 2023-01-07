@@ -5,6 +5,10 @@
     - name: Command test
       command:
         cmd: 'hostname'
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
 
     - name: Restart services
       community.docker.docker_compose:
