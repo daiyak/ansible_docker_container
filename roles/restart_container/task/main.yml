@@ -2,6 +2,10 @@
   hosts: server
   gather_facts: false
   tasks:
+    - name: Command test
+      command:
+        cmd: 'hostname'
+
     - name: Restart services
       community.docker.docker_compose:
         project_src: "{{ src_dir }}"
