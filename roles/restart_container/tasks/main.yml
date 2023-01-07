@@ -1,21 +1,19 @@
-- name: Run using a project directory
-  hosts: server
-  gather_facts: false
-  tasks:
-    - name: Command test
-      command:
-        cmd: 'hostname'
-      register: output
+- name: "Command test"
+  command:
+    cmd: 'hostname'
+  register: output
 
-    - ansible.builtin.debug:
-        var: output
+- name: "Debug msg"
+  debug:
+    msg: "{{ output }}"
 
-    - name: Restart services
-      community.docker.docker_compose:
-        project_src: "{{ src_dir }}"
-        build: false
-        restarted: true
-      register: output
+- name: "Restart services"
+  community.docker.docker_compose:
+    project_src: "{{ src_dir }}"
+    build: false
+    restarted: true
+  register: output
 
-    - ansible.builtin.debug:
-        var: output
+- name: "Debug msg"
+  debug:
+    msg: "{{ output }}"
