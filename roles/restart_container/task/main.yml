@@ -1,0 +1,13 @@
+- name: Run using a project directory
+  hosts: server
+  gather_facts: false
+  tasks:
+    - name: Restart services
+      community.docker.docker_compose:
+        project_src: "{{ src_dir }}"
+        build: false
+        restarted: true
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
